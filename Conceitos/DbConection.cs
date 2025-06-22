@@ -23,7 +23,7 @@ namespace Conceitos
             _dbConection = $"Server={_server};Database={_base};User ID={_user};PassWord={_password};";
         }
 
-        //Metodo retorno da conexão
+        //Metodo retorno da conexão - obtem a conexão
         public string RetornarConexão()
         {
             return _dbConection;
