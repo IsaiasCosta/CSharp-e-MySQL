@@ -87,5 +87,65 @@ namespace Conceitos
             }
 
         }
+        public void Update(int codigo,string nome, int idade, string cidade)
+        {
+            // comando sql 
+            string sql = "UPDATE  Pessoas " +
+                         "SET nome = @nome,idade = @idade,cidade = @cidade " +
+                           "WHERE codigo = @codigo";
+
+            //Conectando  com o Banco e executando a query
+
+            using (var conection = new MySqlConnection(_DbConection))
+            using (var command = new MySqlCommand(sql, conection))
+            {
+                //Parametros Sql
+                command.Parameters.AddWithValue("@codigo", codigo);
+                command.Parameters.AddWithValue("@nome", nome);
+                command.Parameters.AddWithValue("@idade".ToString(), idade);
+                command.Parameters.AddWithValue("@cidade", cidade);
+               
+
+                //Executar comandos
+
+                try
+                {
+                    conection.Open();
+                    command.ExecuteNonQuery();
+                    Console.WriteLine("Atualizado com sucesso...");
+                }
+                catch (Exception erro)
+                {
+                    Console.WriteLine($"{erro} - Falha na atualização " + erro.Message);
+                }
+            }
+        }
+        public void Delete(int codigo)
+        {
+            // comando sql 
+            string sql = "DELETE FROM Pessoas WHERE codigo = @codigo";
+
+            //Conectando  com o Banco e executando a query
+
+            using (var conection = new MySqlConnection(_DbConection))
+            using (var command = new MySqlCommand(sql, conection))
+            {
+                //Parametros Sql
+                command.Parameters.AddWithValue("@codigo", codigo);
+
+                //Executar comandos
+
+                try
+                {
+                    conection.Open();
+                    command.ExecuteNonQuery();
+                    Console.WriteLine("Excluido com sucesso...");
+                }
+                catch (Exception erro)
+                {
+                    Console.WriteLine($"{erro} - Falha na Exclução " + erro.Message);
+                }
+            }
+        }
     }
 }
