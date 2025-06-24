@@ -120,7 +120,7 @@ namespace Conceitos
                 }
             }
         }
-        public void Delete(int codigo)
+        public void DeleteAll(int codigo)
         {
             // comando sql 
             string sql = "DELETE FROM Pessoas WHERE codigo = @codigo";
@@ -147,5 +147,6 @@ namespace Conceitos
                 }
             }
         }
+   
     }
 }
